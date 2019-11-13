@@ -1,0 +1,1 @@
+﻿PRINT 'This file then has some "If not exists" checks and then inserts/updates/deletes data from some table'
