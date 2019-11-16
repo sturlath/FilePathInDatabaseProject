@@ -63,11 +63,11 @@
     <Folder Include="StaticDataInserts\PROD" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="InsertStaticDataProcedure.sql" />
     <Build Include="StaticDataHistoryTable.sql" />
-    <Build Include="HasRunStaticDataProcedure.sql" />
     <None Include="StaticDataInserts\ALWAYS\201911130001_Insert_some_data.sql" />
     <None Include="Always.sql" />
+    <Build Include="HasRunStaticDataProcedure.sql" />
+    <Build Include="InsertStaticDataProcedure.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
@@ -80,5 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SQLCMDExample.publish.xml" />
+    <None Include="StaticDataInserts\ALWAYS\2019151130002_Insert_more_data.sql" />
   </ItemGroup>
 </Project>

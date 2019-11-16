@@ -1,27 +1,23 @@
 ﻿SET @Environment = 'ALWAYS'
 
 --1. -----------------------------------------------------------------------------------------------------------------------------
-:setvar  scriptPathWithName .\StaticDataInserts\ALWAYS\201911130001_Insert_some_data.sql --< this is much cleaner now with this declared once and strongly.
+:setvar  scriptPathWithName1 .\StaticDataInserts\ALWAYS\201911130001_Insert_some_data.sql 
 
--- Check if this insert script has been run before
-EXEC dbo.HasRunStaticDataProcedure '$(scriptPathWithName)', @Environment, @HasRunBefore OUTPUT
+EXEC dbo.HasRunStaticDataProcedure '$(scriptPathWithName1)', @Environment , @HasRunBefore OUTPUT
 
 IF @HasRunBefore = '0'
-	BEGIN
-
-		-- Gets the content of the run (insert/update/delete) file. 
-		SET @File = @solutionDir + SUBSTRING('$(scriptPathWithName)', 2, LEN('$(scriptPathWithName)'));
-		SELECT @SQL = N'SELECT @retvalOUT = BulkColumn FROM OPENROWSET(BULK ''' + @File + ''', SINGLE_BLOB) AS x' ;   
-		SET @ParmDef = N'@retvalOUT varchar(max) OUTPUT';
-		EXEC sp_executesql @SQL, @ParmDef, @retvalOUT=@theContentOfTheScriptFile OUTPUT;
-
-		-- Run the insert file			
-		:r $(scriptPathWithName)
-
-		-- Inserts the into the history table the script name, 'ALWAYS' and what was inserted
-		EXEC dbo.InsertStaticDataProcedure '$(scriptPathWithName)', @Environment, @theContentOfTheScriptFile
+BEGIN
+	EXEC dbo.InsertStaticDataProcedure '$(scriptPathWithName1)', @Environment
 END
 ------------------------------------------------------------------------------------------------------------------------------------
 
 --2. -------------------------------------------------------------------------------------------------------------------------------
---.... and then another set of inserts that should go into every environment.
+
+:setvar  scriptPathWithName2 .\StaticDataInserts\ALWAYS\2019151130002_Insert_more_data.sql 
+
+EXEC dbo.HasRunStaticDataProcedure '$(scriptPathWithName2)', @Environment , @HasRunBefore OUTPUT
+
+IF @HasRunBefore = '0'
+BEGIN
+	EXEC dbo.InsertStaticDataProcedure '$(scriptPathWithName2)', @Environment
+END
