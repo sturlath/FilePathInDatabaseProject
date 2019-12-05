@@ -7,6 +7,7 @@ EXEC dbo.HasRunStaticDataProcedure '$(scriptPathWithName1)', @Environment , @Has
 
 IF @HasRunBefore = '0'
 BEGIN
+	:r $(scriptPathWithName1)
 	EXEC dbo.InsertStaticDataProcedure '$(scriptPathWithName1)', @Environment
 END
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -19,5 +20,6 @@ EXEC dbo.HasRunStaticDataProcedure '$(scriptPathWithName2)', @Environment , @Has
 
 IF @HasRunBefore = '0'
 BEGIN
+	:r $(scriptPathWithName2)
 	EXEC dbo.InsertStaticDataProcedure '$(scriptPathWithName2)', @Environment
 END

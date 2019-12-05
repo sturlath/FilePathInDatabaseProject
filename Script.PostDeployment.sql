@@ -16,5 +16,5 @@ DECLARE @HasRunBefore BIT
 -- But here I only show the one that needs to be run in every environment
 IF '$(Environment)' = 'ALWAYS'
 BEGIN
-	:r Always.sql
+	:r .\Always.sql
 END

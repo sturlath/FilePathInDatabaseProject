@@ -20,18 +20,15 @@ DECLARE @bulkSelect NVARCHAR(max)
 		-- Get the number (yearMonthDayHourMin) of the script . We don't care about the name so you can change that as you like!
 		SELECT @number = SUBSTRING(@scriptName, 1, 12);
 
-		-- Without the following lines I get the following error
+		--------------------------------------------------------------------------------------------------------------------------------------------
+		-- Without the following lines of code I get the following error
 		-- Line 1 Cannot bulk load because the file ".\StaticDataInserts\ALWAYS\201911130001_Insert_some_data.sql" could not be opened. 
 		-- Operating system error code 3(The system cannot find the path specified.).
 		--
 		-- DECLARE @solutionDir VARCHAR(max)
 		-- SELECT @solutionDir = REPLACE('$(SolutionPath)','SQLCMDExample.sln','');
 		-- SET @RelativeFullPathAndFileName = @solutionDir + SUBSTRING(@RelativeFullPathAndFileName, 3, LEN(@RelativeFullPathAndFileName));
-		--
-		-- Add the lines here above and everything works.
-
-
-		print 'REL: ' +@RelativeFullPathAndFileName
+		--------------------------------------------------------------------------------------------------------------------------------------------
 
 		-- Get the data from the file we are going to run
 		SELECT @bulkSelect = N'SELECT @retvalOUT = BulkColumn FROM OPENROWSET(BULK ''' + @RelativeFullPathAndFileName + ''', SINGLE_BLOB) AS x' ;   

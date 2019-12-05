@@ -64,7 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="StaticDataHistoryTable.sql" />
-    <None Include="StaticDataInserts\ALWAYS\201911130001_Insert_some_data.sql" />
+    <None Include="StaticDataInserts\ALWAYS\201911130001_Insert_some_data.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Always.sql" />
     <Build Include="HasRunStaticDataProcedure.sql" />
     <Build Include="InsertStaticDataProcedure.sql" />
@@ -80,6 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SQLCMDExample.publish.xml" />
-    <None Include="StaticDataInserts\ALWAYS\2019151130002_Insert_more_data.sql" />
+    <None Include="StaticDataInserts\ALWAYS\2019151130002_Insert_more_data.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
